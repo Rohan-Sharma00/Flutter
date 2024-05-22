@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_testapp/facebook_loginpage/facebook.dart';
 import 'package:flutter_testapp/product_list/products.dart';
+import "package:flutter_testapp/tp/tp.dart";
+import "package:flutter_testapp/shoppingCart/shoppingCart.dart";
 
 
 // void main() {
@@ -12,5 +14,9 @@ import 'package:flutter_testapp/product_list/products.dart';
 
 
 void main() {
-  runApp(products());
+  runApp(
+    MaterialApp( home:MyApp(),
+     debugShowCheckedModeBanner: false,
+    )
+   );
 }
