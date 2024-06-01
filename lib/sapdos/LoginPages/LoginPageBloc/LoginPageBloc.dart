@@ -23,7 +23,7 @@ on<LoginPageEmailEvent>((event,emit){
   on<LoginPagePasswordEvent>((event,emit)
   {
   
-  if(event.password.length>10)
+  if(event.password.length>5)
   {
       emit(LoginPagePasswordValidState("Password is validated"));
   }
