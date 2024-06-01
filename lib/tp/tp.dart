@@ -1,38 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import "package:flutter_testapp/tp/tp2.dart";
 
-class tp extends StatelessWidget {
-  var names = [
-  'Alice',
-  'Bob',
-  'Carol',
-  'David',
-  'Emily',
-  'Frank',
-  'Grace',
-  'Henry',
-  'Isabel',
-  'Jack'
-];
+
+
+class tp extends StatefulWidget{
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(0),
-      child:ListView.separated(
-        itemBuilder: (context,index)
-        {
-          int reverse=names.length-index-1;
-          return(Text(names[reverse],style: TextStyle( fontSize: 25)));
-        },
-        itemCount: names.length,
-        // scrollDirection: Axis.horizontal,
+  State<StatefulWidget> createState(){
+    return tpState();
+  }
+}
 
-        separatorBuilder: (context,index){
-          return(Divider(height: 50,thickness: 20));
-        },
-       
+
+class tpState extends State<tp>{
+
+int count=0;
+
+  @override
+  Widget build(BuildContext context)
+  {
+      return Scaffold(
+        appBar: AppBar(
+          title:Text("Stateful widget"),
+          backgroundColor:Colors.yellow
+        ),
+        body: Container(
+          height:double.infinity,
+          width:double.infinity,
+          color:Colors.pink,
+          child:Column(
+            children: [
+              Text("Hello world !"),
+              SizedBox(
+                height:50,
+                width:250,
+                child:ElevatedButton(
+                  onPressed:(){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:(context){
+                          return sample("indira college");
+                        })
+                      );
+                  },
+                  child: Text("go to next page"))
+              )
+            ],
+          )
         )
-    ));
+      );
   }
 }
