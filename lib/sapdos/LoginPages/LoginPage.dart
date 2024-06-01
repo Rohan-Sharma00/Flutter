@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_testapp/sapdos/DoctorPages/DoctorPage.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageBloc.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageEvents.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageStates.dart';
@@ -12,26 +13,25 @@ import 'package:flutter_testapp/sapdos/LoginPages/RegistrationPage.dart';
 
 class LoginPage extends StatelessWidget {
   bool isChecked = false;
-  var emailController=TextEditingController();
-    var passwordController=TextEditingController();
-
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   Text styledText(String message, String color) {
-  Color textColor = Colors.black; 
-  
-  if (color.toLowerCase() == 'green') {
-    textColor = Colors.green;
-  } else if (color.toLowerCase() == 'red') {
-    textColor = Colors.red;
+    Color textColor = Colors.black;
+
+    if (color.toLowerCase() == 'green') {
+      textColor = Colors.green;
+    } else if (color.toLowerCase() == 'red') {
+      textColor = Colors.red;
+    }
+    return Text(
+      message,
+      style: TextStyle(
+        color: textColor,
+        fontSize: 20,
+      ),
+    );
   }
-  return Text(
-    message,
-    style: TextStyle(
-      color: textColor,
-      fontSize: 20,
-    ),
-  );
-}
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +74,12 @@ class LoginPage extends StatelessWidget {
                 // height: 20,
                 child: Column(
                   children: [
-                    BlocBuilder<LoginPageBloc,LoginPageStates>(
-                      builder: (context,state){
-                        if(state is LoginPageEmailErrorState)
-                        {
+                    BlocBuilder<LoginPageBloc, LoginPageStates>(
+                      builder: (context, state) {
+                        if (state is LoginPageEmailErrorState) {
                           return styledText(state.message, "red");
                         }
-                         if(state is LoginPageEmailValidState)
-                        {
+                        if (state is LoginPageEmailValidState) {
                           return styledText(state.message, "green");
                         }
                         return Container();
@@ -92,10 +90,9 @@ class LoginPage extends StatelessWidget {
                       widthFactor: 0.65,
                       child: TextField(
                         controller: emailController,
-                        onChanged: (val){
-                          BlocProvider.of<LoginPageBloc>(context).add(
-                              LoginPageEmailEvent(emailController.text)
-                          );
+                        onChanged: (val) {
+                          BlocProvider.of<LoginPageBloc>(context)
+                              .add(LoginPageEmailEvent(emailController.text));
                         },
                         decoration: InputDecoration(
                             hintText: "Email address/ Phone no",
@@ -109,28 +106,27 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 25,
                     ),
-                      BlocBuilder<LoginPageBloc,LoginPageStates>(
-                      builder: (context,state){
-                        if(state is LoginPagePasswordErrorState)
-                        {
+                    BlocBuilder<LoginPageBloc, LoginPageStates>(
+                      builder: (context, state) {
+                        if (state is LoginPagePasswordErrorState) {
                           return styledText(state.message, "red");
                         }
-                         if(state is LoginPagePasswordValidState)
-                        {
+                        if (state is LoginPagePasswordValidState) {
                           return styledText(state.message, "green");
                         }
                         return Container();
                       },
                     ),
                     Center(
+                      
                         child: FractionallySizedBox(
                       widthFactor: 0.65,
                       child: TextField(
-                      controller: passwordController,
-                           onChanged: (val){
+                        obscureText: true,
+                        controller: passwordController,
+                        onChanged: (val) {
                           BlocProvider.of<LoginPageBloc>(context).add(
-                              LoginPagePasswordEvent(passwordController.text)
-                          );
+                              LoginPagePasswordEvent(passwordController.text));
                         },
                         decoration: InputDecoration(
                             hintText: "Password",
@@ -167,15 +163,18 @@ class LoginPage extends StatelessWidget {
                                       .copyWith(fontSize: 10)),
                             ],
                           ),
-
                           Row(
                             children: [
                               InkWell(
-                                onTap:(){},
-                                child:Text("Forgot Password", style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(fontSize: 10,decoration: TextDecoration.underline)), 
+                                onTap: () {},
+                                child: Text("Forgot Password",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(
+                                            fontSize: 10,
+                                            decoration:
+                                                TextDecoration.underline)),
                               ),
                             ],
                           )
@@ -198,9 +197,17 @@ class LoginPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(0),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (emailController.text == "doctor@gmail.com" &&
+                              passwordController.text == "doctor") {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return DoctorPage();
+                            }));
+                          }
+                        },
                         child: Text(
-                          "SIGN-UP",
+                          "Login",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -216,12 +223,10 @@ class LoginPage extends StatelessWidget {
                             Text("Not on sapdos?"),
                             InkWell(
                               onTap: () {
-
-                                 Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return RegistrationPage();
-                          }));
-
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return RegistrationPage();
+                                }));
                               },
                               child: Text(
                                 "Sign Up",

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPage.dart';
+import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageBloc.dart';
 
 class RegistrationPage extends StatelessWidget {
   @override
@@ -15,7 +17,6 @@ class RegistrationPage extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 2,
           child: Image.asset(
             "assets/doctor.png",
-           
             fit: BoxFit.cover,
           ),
         ),
@@ -65,6 +66,7 @@ class RegistrationPage extends StatelessWidget {
                         child: FractionallySizedBox(
                       widthFactor: 0.65,
                       child: TextField(
+                        obscureText: true,
                         decoration: InputDecoration(
                             hintText: "Password",
                             hintStyle: TextStyle(fontSize: 12),
@@ -82,6 +84,7 @@ class RegistrationPage extends StatelessWidget {
                         child: FractionallySizedBox(
                       widthFactor: 0.65,
                       child: TextField(
+                        obscureText: true,
                         decoration: InputDecoration(
                             hintText: "Confirm Password",
                             hintStyle: TextStyle(fontSize: 12),
@@ -123,15 +126,13 @@ class RegistrationPage extends StatelessWidget {
                             Text("already on sapdos?"),
                             InkWell(
                               onTap: () {
-
-                                 Navigator.push(
-                        context,
-                        MaterialPageRoute(builder:(context){
-                          return LoginPage();
-                        }
-                        )
-                      );
-
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return BlocProvider(
+                                    create: (context) => LoginPageBloc(),
+                                    child: LoginPage(),
+                                  );
+                                }));
                               },
                               child: Text(
                                 "Sign In",
