@@ -5,6 +5,7 @@ import 'package:flutter_testapp/product_list/products.dart';
 import "package:flutter_testapp/sapdos/DoctorPages/DoctorPage.dart";
 import "package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageBloc.dart";
 import "package:flutter_testapp/sign_in/bloc/sign_in_bloc.dart";
+import "package:flutter_testapp/tp/json.dart";
 import "package:flutter_testapp/tp/tp.dart";
 import "package:flutter_testapp/tp/splash.dart";
 
@@ -12,6 +13,8 @@ import "package:flutter_testapp/shoppingCart/shoppingCart.dart";
 import "package:flutter_testapp/customWidget/mainFile.dart";
 import "package:flutter_testapp/sign_in/sign_in_screen.dart";
 import "package:flutter_testapp/sapdos/LoginPages/HomeScreen.dart";
+import "package:flutter_testapp/sapdos/PatientPage/PatientHomePage.dart";
+
 
 
 
@@ -32,7 +35,7 @@ void main() {
       //   create: (context) => LoginPageBloc(),
       //   child:HomeScreen(),
       // ),
-      home:HomeScreen(),
+      home:PatientHomePage(),
 
      debugShowCheckedModeBanner: false,
     theme: ThemeData(
