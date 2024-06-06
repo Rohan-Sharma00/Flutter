@@ -94,7 +94,6 @@ class PatientHomePage extends StatelessWidget {
               return Center(child: Text('Error loading data'));
             } else {
               DataModel data = snapshot.data!;
-              // return Container(color:Colors.amber,child: Text(data.doctorsList[0].specialization));
               return DoctorDetails(context,data.doctorsList);
             }
           },
@@ -132,17 +131,19 @@ class PatientHomePage extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.w700)),
                       Text(doctor.specialization),
                       RatingBar.builder(
+                        ignoreGestures: true,
                         initialRating: doctor.rating,
                         minRating: doctor.rating,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
+                        
                         itemBuilder: (context, _) => Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
+                         tapOnlyMode: false,
                         onRatingUpdate: (rating) {
-                          print(rating);
                         },
                       ),
                     ],

@@ -24,6 +24,7 @@ class Doctor {
   final String appointmentIcon;
   final int price;
   final double rating;
+  final int totalRatings; 
   final String education;
   final String experience;
   final String description;
@@ -35,6 +36,7 @@ class Doctor {
     required this.appointmentIcon,
     required this.price,
     required this.rating,
+    required this.totalRatings,
     required this.education,
     required this.experience,
     required this.description,
@@ -47,7 +49,8 @@ class Doctor {
       specialization: json['specialization'],
       appointmentIcon: json['appointmentIcon'],
       price: json['price'],
-      rating: json['rating'],
+      rating: json['rating'].toDouble(),
+      totalRatings: json['totalRatings'],
       education: json['education'],
       experience: json['experience'],
       description: json['description'],
