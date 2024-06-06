@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_testapp/sapdos/DoctorPages/DoctorSideBar.dart';
+import 'package:flutter_testapp/sapdos/SapdosSideBar.dart';
 
 class DoctorPage extends StatelessWidget {
   var patientData = [

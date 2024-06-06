@@ -10,6 +10,7 @@ import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageBloc.da
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageEvents.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/LoginPageBloc/LoginPageStates.dart';
 import 'package:flutter_testapp/sapdos/LoginPages/RegistrationPage.dart';
+import 'package:flutter_testapp/sapdos/PatientPage/PatientHomePage.dart';
 
 class LoginPage extends StatelessWidget {
   bool isChecked = false;
@@ -203,6 +204,14 @@ class LoginPage extends StatelessWidget {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return DoctorPage();
+                            }));
+                          }
+                          else
+                           if (emailController.text == "patient@gmail.com" &&
+                              passwordController.text == "patient") {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return PatientHomePage();
                             }));
                           }
                         },
